@@ -1,4 +1,4 @@
-##Тестовое задание для mygiftcard
+## Тестовое задание для mygiftcard
 
 База данных лежит в корне. Файл **mygiftcard.sql**
 
@@ -6,7 +6,7 @@
 
 В файле **api/app/config.ini** задать настройки к базе данных.
 
-###API mygiftcard
+### API mygiftcard
 
 Подключение к и импорт категорий и товаров находится в **api/crons/import.php**
 
