@@ -1,0 +1,20 @@
+.products {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.product-card {
+    width: calc(100% / 3);
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card img {
+    -webkit-transition: all 0.2s !important;
+    transition: all 0.2s !important;
+    max-height: 200px;
+}

@@ -2,15 +2,6 @@
 namespace controllers;
 use models\users;
 
-/**
- * Class authorized
- *
- * Все контроллеры, которые должны проходить авторизацию и проверку подписи
- * наследуются от этого класса
- *
- * @package controllers
- */
-
 abstract class authorized
 {
 	public $request;
@@ -31,18 +22,18 @@ abstract class authorized
 		if ($token) {
 			$this->user = $users->getByToken($token);
 			if (!$this->user) {
-				exit(json_encode(array("error" => "auth")));
+				exit(json_encode(["error" => "auth"]));
 			}
 		} elseif ($signature) {
 			ksort($data);
 
 			if (md5(json_encode($data).'d836448ef8c015471071035b61bee27e0aff0b895d5f5ee5754242b9bde3b93c') != $signature) {
-				exit(json_encode(array("error" => "auth")));
+				exit(json_encode(["error" => "auth"]));
 			}
 
 			$this->user = $client;
 		} else {
-			exit(json_encode(array("error" => "auth")));
+			exit(json_encode(["error" => "auth"]));
 		}
 
 	}
@@ -53,21 +44,5 @@ abstract class authorized
 		    return array_intersect_key((array)$data, array_flip($params));
 	    }
     	return array_intersect_key((array)$this->request, array_flip($params));
-    }
-
-    public function relativeURL($url)
-    {
-        $new = $url;
-        if (mb_substr($url, 0, 1, 'utf-8') != '/'){
-            $new = str_replace('https://www.'.$_SERVER['HTTP_HOST'], '', $new);
-            $new = str_replace('http://www.'.$_SERVER['HTTP_HOST'], '', $new);
-            $new = str_replace('https://'.$_SERVER['HTTP_HOST'], '', $new);
-            $new = str_replace('http://'.$_SERVER['HTTP_HOST'], '', $new);
-            $new = str_replace('www.'.$_SERVER['HTTP_HOST'], '', $new);
-        } else {
-            $new = str_replace('//'.$_SERVER['HTTP_HOST'], '', $new);
-        }
-
-        return $new;
     }
 }

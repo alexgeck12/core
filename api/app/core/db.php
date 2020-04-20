@@ -50,7 +50,7 @@ class db extends \mysqli
 		foreach ($data as $i => $row) {
 			foreach ($row as $field => $value) {
 				$fields[$field] = "`$field`";
-				$values[$i][$field] = "'".addcslashes($this->real_escape_string($value), "'")."'";
+				$values[$i][$field] = "'".addcslashes($value, "'")."'";
 			}
 			ksort($values[$i]);
 			$values[$i] = '('.implode(',', $values[$i]).')';

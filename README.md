@@ -1,3 +1,13 @@
-Simple API with MVC structure
+##Тестовое задание для mygiftcard
 
-All request must go to api/index.php
+База данных лежит в корне. Файл **mygiftcard.sql**
+
+В файле **nginx.conf** нужно указать **server_name**
+
+В файле **api/app/config.ini** задать настройки к базе данных.
+
+###API mygiftcard
+
+Подключение к и импорт категорий и товаров находится в **api/crons/import.php**
+
+В папке public находится публичная часть для работы с API. Отображение категорий и товаров. Создание заказа.
